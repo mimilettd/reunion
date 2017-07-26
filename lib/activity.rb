@@ -5,4 +5,8 @@ class Activity
     @name = name
     @participants = {}
   end
+
+  def add_participant(name, age)
+    participants.merge!(name => age)
+  end
 end
