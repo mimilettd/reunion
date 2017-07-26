@@ -12,6 +12,7 @@ class Activity
 
   def add_participant(name, cost)
     participants.merge!(name => cost)
+    total_cost
   end
 
   def total_cost
