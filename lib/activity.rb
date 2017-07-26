@@ -1,9 +1,11 @@
 class Activity
   attr_reader :name,
-              :participants
+              :participants,
+              :total_cost
   def initialize(name)
     @name = name
     @participants = {}
+    @total_cost = 0
   end
 
   def add_participant(name, cost)
@@ -11,6 +13,10 @@ class Activity
   end
 
   def total_cost
-    participants.inject(0) { |sum, cost| sum += cost[1] }
+    @total_cost = participants.inject(0) { |sum, cost| sum += cost[1] }
+  end
+
+  def split
+    total_cost / participants.count
   end
 end
