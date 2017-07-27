@@ -6,8 +6,6 @@ class Activity
   def initialize(name)
     @name = name
     @participants = {}
-    @total_cost = 0
-    @split = 0
   end
 
   def add_participant(name, cost)

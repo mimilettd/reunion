@@ -2,17 +2,20 @@ require_relative 'activity'
 require 'pry'
 
 class Reunion
-  attr_reader :city,
-              :activity_1
-  def initialize(city)
-    @city = city
+  attr_reader :name,
+              :activities
+  def initialize(name)
+    @name = name
+    @activities = []
   end
 
   def add_activity(activity)
-    @activity_1 = Activity.new(activity)
+    activities << activity
   end
 
   def total_cost
-    activity_1.total_cost
+    activities.inject(0) do |sum, activity|
+      sum += activity.total_cost
+    end
   end
 end
