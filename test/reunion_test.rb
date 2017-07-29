@@ -63,6 +63,7 @@ class ReunionTest < Minitest::Test
     activity_2.add_participant("John", 80)
     reunion.add_activity(activity_2)
     expected = {"Jim"=> 20, "Joe"=> -10, "John"=> -10}
+
     assert_equal expected, reunion.breakout
   end
 end

@@ -25,14 +25,19 @@ class Reunion
     breakout_money = {}
     total_owed = 0
     activities.each do |activity|
-      activity.owed.each do |key, owe|
-        if breakout_money.has_key?(key)
-          breakout_money[key] = breakout_money[key] + owe
-        else breakout_money[key] = total_owed + owe
-        end
-      end
+      owed(activity, breakout_money, total_owed)
     end
     breakout_money
+  end
+
+  def owed(activity, breakout_money, total_owed)
+    activity.owed.each do |key, owe|
+      if breakout_money.has_key?(key)
+        breakout_money[key] = breakout_money[key] + owe
+      else
+        breakout_money[key] = total_owed + owe
+      end
+    end
   end
 
 end
