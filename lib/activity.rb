@@ -1,27 +1,32 @@
 class Activity
   attr_reader :name,
               :participants,
-              :total_cost,
               :split
   def initialize(name)
     @name = name
     @participants = {}
   end
 
-  def add_participant(name, cost)
-    participants.merge!(name => cost)
-    total_cost
+  def add_participant(name, paid)
+    participants.merge!(name => paid)
   end
 
   def total_cost
-    @total_cost = participants.inject(0) { |sum, cost| sum += cost[1] }
+    participants.inject(0) do |sum, person|
+      sum + person[1]
+    end
   end
 
   def split
-    @split = total_cost / participants.count
+    total_cost / participants.count
   end
 
   def owed
-     participants.inject({}) { |participants, (k, v)| participants[k] = v - split; participants }
+    amount_owed = {}
+    participants.each do |key, value|
+      amount_owed[key] = split - value
+    end
+    amount_owed
   end
+
 end
